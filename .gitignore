@@ -3,3 +3,5 @@ localSettings.py
 .idea
 /spiders/__pycache__
 /__pycache__
+/log
+/job
