@@ -159,7 +159,10 @@ class CtpSpider(scrapy.Spider):
                     item['uuid'] = v.get('uuid', '')
                     item['round'] = v.get('round', '')
                     item['logo'] = v.get('logo', '')
-                    item['finance_date'] = v.get('finance_date', '')
+                    if '-' == v.get('finance_date') or '' == v.get('finance_date', ''):
+                        item['finance_date'] = "1970-01-01"
+                    else:
+                        item['finance_date'] = v.get('finance_date', '')
 
                     yield item
 

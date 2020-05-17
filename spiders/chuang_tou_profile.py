@@ -91,12 +91,11 @@ class CptProSpider(scrapy.Spider):
                 uuid = uuid_data['uuid']
                 if "" != uuid:
                     self.url_data['uuid'] = uuid
-                    self.common_headers[':path'] = "/primary-market-pro-v3/project_info/query/v4?{}".format(parse.urlencode(self.url_data)),
+                    self.common_headers[':path'] = "/primary-market-pro-v3/project_info/query/v4?{}".format(parse.urlencode(self.url_data))
                     yield FormRequest(self.pre_url + "/primary-market-pro-v3/project_info/query/v4", method="GET", headers=self.common_headers,
                                       formdata=self.url_data, callback=self.parse, dont_filter=False)
 
-            return []
-
+        return []
 
 
     def parse(self, response):
@@ -175,7 +174,10 @@ class CptProSpider(scrapy.Spider):
                     project_item['round'] = project_data['round']
                     project_item['company_name'] = project_data['company_name']
                     project_item['logo'] = project_data['project_img_url']
-                    project_item['setup_date'] = project_data['setup_date']
+                    if '-' == project_data['setup_date']:
+                        project_item['setup_date'] = "1970-01-01"
+                    else:
+                        project_item['setup_date'] = project_data['setup_date']
 
                     yield project_item
 
@@ -201,7 +203,12 @@ class CptProSpider(scrapy.Spider):
                             finance_item = InvestFinanceRecordItem()
 
                             finance_item['uuid'] = project_data['uuid']
-                            finance_item['put_date'] = finance_data['date']
+                            if '-' == finance_data['date']:
+                                finance_item['put_date'] = "1970-01-01"
+                            else:
+                                finance_item['put_date'] = finance_data['date']
+
+
                             finance_item['amount'] = finance_data['amount']
                             finance_item['round'] = finance_data['round']
                             # 投资人或机构 多个用逗号隔开

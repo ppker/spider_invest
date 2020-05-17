@@ -236,5 +236,109 @@ class InvestFinanceRecordItem(scrapy.Item):
         return insert_sql, params
 
 
+class InvestShareHolderItem(scrapy.Item):
+
+    capital_contribution = scrapy.Field()
+    name = scrapy.Field()
+    shareholder_type = scrapy.Field()
+    date_contribution = scrapy.Field()
+    ratio = scrapy.Field()
+
+    def get_insert_sql(self):
+
+        now_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+        insert_sql = '''
+            insert into `invest_holder_stock`(capital_contribution, name, shareholder_type, date_contribution, ratio, 
+            created_at, updated_at) values (%s, %s, %s, %s, %s, %s, %s);
+        '''
+        params = (
+            self['capital_contribution'],
+            self['name'],
+            self['shareholder_type'],
+            self['date_contribution'],
+            self['ratio'],
+            str(now_time),
+            str(now_time),
+        )
+
+        return insert_sql, params
+
+
+class InvestBusinessIcItem(scrapy.Item):
+
+    company_type = scrapy.Field()
+    registration_authority = scrapy.Field()
+    approval_date = scrapy.Field()
+    legal_person = scrapy.Field()
+    registered_address = scrapy.Field()
+    business_term = scrapy.Field()
+    uscc = scrapy.Field()
+    insurer_num = scrapy.Field()
+    industry = scrapy.Field()
+    company_name_used = scrapy.Field()
+    registration_num = scrapy.Field()
+    registered_capital = scrapy.Field()
+    currency_type = scrapy.Field()
+    operating_scope = scrapy.Field()
+    uuid = scrapy.Field()
+    operating_state = scrapy.Field()
+    contributed_capital = scrapy.Field()
+    company_name = scrapy.Field()
+    setup_date = scrapy.Field()
+    company_url = scrapy.Field()
+    company_name_en = scrapy.Field()
+    org_code = scrapy.Field()
+
+
+    def get_insert_sql(self):
+
+        now_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+        insert_sql = '''
+            insert into `invest_business_ic_info`(company_type, registration_authority, approval_date, legal_person, registered_address, 
+            business_term, uscc, insurer_num, industry, company_name_used, registration_num, registered_capital, currency_type, 
+            operating_scope, uuid, operating_state, contributed_capital, company_name, setup_date, company_url, company_name_en, org_code, 
+            created_at, updated_at) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
+        '''
+
+        params = (
+            self['company_type'],
+            self['registration_authority'],
+            self['approval_date'],
+            self['legal_person'],
+            self['registered_address'],
+            self['business_term'],
+            self['uscc'],
+            self['insurer_num'],
+            self['industry'],
+            self['company_name_used'],
+            self['registration_num'],
+            self['registered_capital'],
+            self['currency_type'],
+            self['operating_scope'],
+            self['uuid'],
+            self['operating_state'],
+            self['contributed_capital'],
+            self['company_name'],
+            self['setup_date'],
+            self['company_url'],
+            self['company_name_en'],
+            self['org_code'],
+            str(now_time),
+            str(now_time),
+        )
+
+        return insert_sql, params
+
+
+
+
+
+
+
+
+
+
+
+
 
 
