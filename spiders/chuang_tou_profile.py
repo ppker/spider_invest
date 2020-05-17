@@ -78,7 +78,7 @@ class CptProSpider(scrapy.Spider):
 
         # 先获取1000条uuid
         sql = '''
-            select id, uuid from `invest_project_all_list` where id > 0 and id <= 1000 limit 5; 
+            select id, uuid from `invest_project_all_list` where id > 0 and id <= 10000 limit 10000; 
         '''
         self.cursor.execute(sql)
         data = self.cursor.fetchall()

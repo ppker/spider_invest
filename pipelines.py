@@ -37,6 +37,9 @@ class InvestPipeline:
         spider.logger.warning("sql is >>>>>> \n")
         spider.logger.warning(str(insert_sql) % params)
         spider.logger.warning(failure)
+        print(">>>>>>>error<<<<<<<<")
+        print(str(insert_sql) % params)
+        print(failure)
 
 
     def do_insert(self, cursor, item):
