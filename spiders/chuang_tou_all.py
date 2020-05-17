@@ -83,7 +83,7 @@ class CtpSpider(scrapy.Spider):
         return [
             # https://primary-market.aigauss.com/primary-market-pro-v3/pm_filter/get_filters?page_type=2
             FormRequest(self.pre_url + "/primary-market-pro-v3/pm_filter/get_filters", method="GET", headers=use_data_common,
-                        formdata={"page_type": "2"}, callback=self.parse_common_data, dont_filter=False)
+                        formdata={"page_type": "2"}, callback=self.parse_common_data, dont_filter=True)
         ]
 
 

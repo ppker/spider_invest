@@ -33,7 +33,9 @@ class InvestPipeline:
     def handle_error(self, failure, item, spider):
         spider.logger.warning("peng. this has errors")
         insert_sql, params = item.get_insert_sql()
-        spider.logger.warning("peng. insert_sql is " + insert_sql % params)
+
+        spider.logger.warning("sql is >>>>>> \n")
+        spider.logger.warning(str(insert_sql) % params)
         spider.logger.warning(failure)
 
 
