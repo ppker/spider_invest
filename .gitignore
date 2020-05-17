@@ -1,3 +1,4 @@
 *.json
 localSettings.py
-.idea/
+.idea
+/spiders/__pycache__
