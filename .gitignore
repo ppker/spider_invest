@@ -5,3 +5,4 @@ localSettings.py
 /__pycache__
 /log
 /job
+/common/__pycache__

@@ -10,6 +10,7 @@ from urllib import parse
 from scrapy.http import FormRequest
 from invest.localSettings import db_mysql
 from invest.items import InvestShareHolderItem, InvestBusinessIcItem
+from invest.common import utils
 
 
 class CptIcProSpider(scrapy.Spider):
@@ -178,6 +179,10 @@ class CptIcProSpider(scrapy.Spider):
                         company_item['setup_date'] = '1970-01-01'
                     else:
                         company_item['setup_date'] = company_info['setup_date']
+
+                    # 兼容
+                    company_item['setup_date'] = utils.Utils.Format_date(company_item['setup_date'])
+
 
                     company_item['company_url'] = company_info['company_url']
                     company_item['company_name_en'] = company_info['company_name_en']
