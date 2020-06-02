@@ -114,6 +114,8 @@ class CptIcProSpider(scrapy.Spider):
                         else:
                             sto_holder_item['capital_contribution'] = holder_item['capital_contribution']
 
+                        sto_holder_item['capital_contribution'] = sto_holder_item['capital_contribution'].strip()
+
                         sto_holder_item['name'] = holder_item['name']
                         sto_holder_item['shareholder_type'] = holder_item['shareholder_type']
 
